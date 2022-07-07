@@ -1,4 +1,4 @@
-FROM public.ecr.aws/docker/library/python:3.9.12-slim-buster
+FROM public.ecr.aws/docker/library/python:3.9.12-buster
 
 # update the packages
 RUN apt -y update && apt -y upgrade && apt -y install nginx
@@ -28,12 +28,13 @@ RUN mkdir -p $APP_HOME/scripts
 RUN chown -R webservice $APP_HOME /home/webservice && chgrp -R webservice $APP_HOME /home/webservice
 
 # Define port and startup script
-EXPOSE 8000
+EXPOSE 8080
 CMD package/scripts/entry.ksh
 
 # Move in other assets
 COPY package/scripts/entry.ksh $APP_HOME/scripts/entry.ksh
 COPY package/data/container_bash_profile /home/webservice/.profile
+COPY package/data/default.conf /etc/nginx/conf.d
 
 # Ensure permissions are correct
 RUN chown webservice:webservice /home/webservice/.profile $APP_HOME/scripts/entry.ksh && chmod 755 /home/webservice/.profile $APP_HOME/scripts/entry.ksh
