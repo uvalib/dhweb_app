@@ -9,7 +9,7 @@ __pycache__/
 
 db/
 nginx/
-data
+/data
 .coverage
 htmlcov/
 xml/
