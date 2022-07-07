@@ -121,7 +121,7 @@ DATABASES = {
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.memcached.MemcachedCache",
-        "LOCATION": "memcached:11211",
+        "LOCATION": os.environ["MEMCACHE"],
         "TIMEOUT": 60 * 10,
     }
 }
