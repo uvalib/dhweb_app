@@ -29,7 +29,7 @@ RUN mkdir -p $APP_HOME/scripts $APP_HOME/data
 
 # Define port and startup script
 EXPOSE 80
-CMD package/scripts/entry.ksh
+CMD scripts/entry.ksh
 
 # Move in other assets
 COPY package/scripts/entry.ksh $APP_HOME/scripts/entry.ksh
