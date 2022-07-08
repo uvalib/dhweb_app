@@ -3,8 +3,8 @@ FROM public.ecr.aws/docker/library/python:3.9.12-buster
 # update the packages
 RUN apt-get -y update && apt-get -y upgrade && apt-get -y install nginx vim
 
-# Create the run user and group
-#RUN addgroup --gid 1000 webservice && adduser -q --uid 1000 --gid 1000 --disabled-login webservice
+# remove default nginx site
+RUN rm /etc/nginx/sites-enabled/default
 
 # set the timezone appropriatly
 ENV TZ=UTC
@@ -24,9 +24,6 @@ ADD dh_abstracts/app $APP_HOME
 # create necessary directories
 RUN mkdir -p $APP_HOME/scripts $APP_HOME/data
 
-# Update permissions
-#RUN chown -R webservice $APP_HOME /home/webservice && chgrp -R webservice $APP_HOME /home/webservice
-
 # Define port and startup script
 EXPOSE 80
 CMD scripts/entry.ksh
@@ -37,15 +34,9 @@ COPY package/scripts/migrate.ksh $APP_HOME/scripts/migrate.ksh
 COPY package/data/container_bash_profile /root/.profile
 COPY package/data/default.conf /etc/nginx/conf.d
 
-# Ensure permissions are correct
-#RUN chown webservice:webservice /home/webservice/.profile $APP_HOME/scripts/entry.ksh && chmod 755 /home/webservice/.profile $APP_HOME/scripts/entry.ksh
-
 # Add the build tag
 ARG BUILD_TAG
 RUN test -n "$BUILD_TAG" && touch $APP_HOME/buildtag.build-$BUILD_TAG || touch $APP_HOME/buildtag.build-0
-
-# Specify the user
-#USER webservice
 
 #
 # end of file
