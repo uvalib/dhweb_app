@@ -25,7 +25,7 @@ SECRET_KEY = os.environ.get("DH_SECRET")
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = os.environ.get("DEBUG_STATUS") == "True"
 
-ALLOWED_HOSTS = ["localhost", os.environ.get("ALLOWED_HOSTS")]
+ALLOWED_HOSTS = [os.environ.get("ALLOWED_HOSTS")]
 
 DEBUG_TOOLBAR_CONFIG = {"SHOW_TOOLBAR_CALLBACK": lambda _request: DEBUG}
 
@@ -120,8 +120,8 @@ DATABASES = {
 
 CACHES = {
     "default": {
-        "BACKEND": "django.core.cache.backends.memcached.MemcachedCache",
-        "LOCATION": os.environ["MEMCACHE"],
+        "BACKEND": "django.core.cache.backends.filebased.FileBasedCache",
+        "LOCATION": "/tmp",
         "TIMEOUT": 60 * 10,
     }
 }
