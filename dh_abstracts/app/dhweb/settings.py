@@ -160,11 +160,11 @@ USE_TZ = True
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = "/static/"
-STATIC_ROOT = "/vol/static_files"
+STATIC_ROOT = f"{os.environ['STATIC_ASSETS_PATH']}"
 LOGIN_URL = "/accounts/login"
 LOGIN_REDIRECT_URL = "/"
 
-DATA_OUTPUT_PATH = "/vol/data"
+DATA_OUTPUT_PATH = f"{os.environ['DATA_OUTPUT_PATH']}"
 
 DENORMALIZED_WORKS_NAME = "dh_conferences_works"
 
