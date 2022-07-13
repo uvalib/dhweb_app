@@ -2,6 +2,9 @@
 # Docker entry point
 #
 
+# run any pending migrations
+scripts/migrate.ksh
+
 # ensure nginx is started
 service nginx start
 
