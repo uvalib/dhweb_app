@@ -1,0 +1,2 @@
+# min	hour	day	month	weekday	command (all times are local)
+0	0	*	*	*	flock -x /tmp/export.lock -c /dh-abstracts/scripts/export.ksh

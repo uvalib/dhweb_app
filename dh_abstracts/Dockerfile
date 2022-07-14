@@ -1,7 +1,7 @@
 FROM public.ecr.aws/docker/library/python:3.9.12-buster
 
 # update the packages
-RUN apt-get -y update && apt-get -y upgrade && apt-get -y install nginx vim
+RUN apt-get -y update && apt-get -y upgrade && apt-get -y install cron nginx vim
 
 # remove default nginx site
 RUN rm /etc/nginx/sites-enabled/default
@@ -30,7 +30,10 @@ CMD scripts/entry.ksh
 
 # Move in other assets
 COPY package/scripts/entry.ksh $APP_HOME/scripts/entry.ksh
+COPY package/scripts/export.ksh $APP_HOME/scripts/export.ksh
 COPY package/scripts/migrate.ksh $APP_HOME/scripts/migrate.ksh
+COPY package/scripts/install-cron.ksh $APP_HOME/scripts/install-cron.ksh
+COPY package/data/crontab $APP_HOME/crontab
 COPY package/data/container_bash_profile /root/.profile
 COPY package/data/default.conf /etc/nginx/conf.d
 
