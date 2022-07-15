@@ -7,7 +7,7 @@
 scripts/migrate.ksh
 
 # install the crontab
-scripts/install-cron.ksh
+#scripts/install-cron.ksh
 
 # ensure nginx is started
 service nginx start
