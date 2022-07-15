@@ -21,6 +21,16 @@ WORKDIR $APP_HOME
 # install the application
 ADD dh_abstracts/app $APP_HOME
 
+# generate the static content
+ENV POSTGRES_HOST=unimportant \
+    POSTGRES_DB=unimportant \
+    POSTGRES_USER=unimportant \
+    POSTGRES_PASSWORD=unimportant \
+    DH_SECRET=unimportant \
+    DATA_OUTPUT_PATH=unimportant \
+    STATIC_ASSETS_PATH=/dh-abstracts/abstracts/static
+RUN $APP_HOME/manage.py collectstatic --noinput
+
 # create necessary directories
 RUN mkdir -p $APP_HOME/scripts $APP_HOME/data
 
