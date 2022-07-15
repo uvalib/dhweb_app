@@ -1,2 +1,2 @@
-# min	hour	day	month	weekday	command (all times are local)
-0	0	*	*	*	flock -x /tmp/export.lock -c /dh-abstracts/scripts/export.ksh
+# min	hour	day	month	weekday	command (all times are UTC)
+0	5	*	*	*	flock -x /tmp/export.lock -c /dh-abstracts/scripts/export.ksh >> /var/log/export-cron.log 2>&1
