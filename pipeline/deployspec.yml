@@ -6,7 +6,7 @@ version: 0.2
 
 env:
   variables:
-    terraform_version: 1.2.2
+    terraform_version: 1.2.5
 
 phases:
   install:
@@ -24,7 +24,7 @@ phases:
 
   build:
     commands:
-      - cd $CODEBUILD_SRC_DIR/terraform-infrastructure/dh-abstracts/staging
+      - cd $CODEBUILD_SRC_DIR/terraform-infrastructure/dh-abstracts/staging/backend
       - terraform init -no-color
       - terraform apply -no-color -auto-approve -var container_tag=$latest_build
 
