@@ -929,7 +929,7 @@ def download_data(request):
         zip_url = reverse("public_all_tables_download")
     denormalized_url = reverse("works_download")
     denormalized_last_updated = datetime.fromtimestamp(
-        getmtime(f"{settings.DATA_OUTPUT_PATH}/{settings.DENORMALIZED_WORKS_NAME}.zip")
+        getmtime(f"{settings.DATA_OUTPUT_PATH}/exports/{settings.DENORMALIZED_WORKS_NAME}.zip")
     )
 
     for m in dt_config["CONFIGURATION"]:
@@ -975,7 +975,7 @@ def download_data(request):
             }
         )
     normalized_last_updated = datetime.fromtimestamp(
-        getmtime(f"{settings.DATA_OUTPUT_PATH}/{dt_config['DATA_ZIP_NAME']}")
+        getmtime(f"{settings.DATA_OUTPUT_PATH}/exports/{dt_config['DATA_ZIP_NAME']}")
     )
 
     context = {
@@ -991,20 +991,20 @@ def download_data(request):
 
 
 def download_works_csv(request):
-    target_zip = f"{settings.DATA_OUTPUT_PATH}/{settings.DENORMALIZED_WORKS_NAME}.zip"
+    target_zip = f"{settings.DATA_OUTPUT_PATH}/exports/{settings.DENORMALIZED_WORKS_NAME}.zip"
     response = FileResponse(open(target_zip, "rb"))
     return response
 
 
 def public_download_all_tables(request):
-    target_zip = f"{settings.DATA_OUTPUT_PATH}/{settings.PUBLIC_DATA_TABLE_CONFIG['DATA_ZIP_NAME']}"
+    target_zip = f"{settings.DATA_OUTPUT_PATH}/exports/{settings.PUBLIC_DATA_TABLE_CONFIG['DATA_ZIP_NAME']}"
     response = FileResponse(open(target_zip, "rb"))
     return response
 
 
 @login_required
 def private_download_all_tables(request):
-    target_zip = f"{settings.DATA_OUTPUT_PATH}/{settings.PRIVATE_DATA_TABLE_CONFIG['DATA_ZIP_NAME']}"
+    target_zip = f"{settings.DATA_OUTPUT_PATH}/exports/{settings.PRIVATE_DATA_TABLE_CONFIG['DATA_ZIP_NAME']}"
     response = FileResponse(open(target_zip, "rb"))
     return response
 
