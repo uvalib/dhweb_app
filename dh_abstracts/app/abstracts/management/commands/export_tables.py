@@ -160,13 +160,13 @@ class Command(BaseCommand):
             denorm_path = self.write_denormalized_csvs(tdir)
             shutil.copy(
                 private_path,
-                f"{settings.DATA_OUTPUT_PATH}/exports/{settings.PRIVATE_DATA_TABLE_CONFIG['DATA_ZIP_NAME']}",
+                f"{settings.DATA_OUTPUT_PATH}/{settings.PRIVATE_DATA_TABLE_CONFIG['DATA_ZIP_NAME']}",
             )
             shutil.copy(
                 public_path,
-                f"{settings.DATA_OUTPUT_PATH}/exports/{settings.PUBLIC_DATA_TABLE_CONFIG['DATA_ZIP_NAME']}",
+                f"{settings.DATA_OUTPUT_PATH}/{settings.PUBLIC_DATA_TABLE_CONFIG['DATA_ZIP_NAME']}",
             )
             shutil.copy(
                 denorm_path,
-                f"{settings.DATA_OUTPUT_PATH}/exports/{settings.DENORMALIZED_WORKS_NAME}.zip",
+                f"{settings.DATA_OUTPUT_PATH}/{settings.DENORMALIZED_WORKS_NAME}.zip",
             )
