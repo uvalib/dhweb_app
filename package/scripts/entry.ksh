@@ -18,7 +18,7 @@ scripts/migrate.ksh
 service nginx start
 
 # start the application server
-gunicorn -w 2 -b 0.0.0.0:8080 --log-level debug dhweb.wsgi
+gunicorn --workers 2 --bind 0.0.0.0:8080 --timeout 180 --log-level debug --access-logfile - dhweb.wsgi
 
 #
 # end of file
